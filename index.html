@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acqu Care Automation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+
+        h1, .button-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+
+        button {
+            padding: 20px 40px;
+            font-size: 24px;
+            margin: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid black;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="background-video"></div>
+
+    <div class="content">
+        <h1>Acqu Care Automation</h1>
+
+        <div class="button-container">
+            <button id="feedBtn" onclick="openLink('https://youtu.be/4a-9o0KWlBI?feature=shared')">Feed</button>
+            <button id="cleanBtn" onclick="openLink('https://youtube.com/shorts/d1b0CBXk1_s?feature=shared')">Clean</button>
+            <button id="cameraBtn" onclick="openLink('https://youtube.com/shorts/mT8rJWOsGSc?feature=shared')">Camera</button>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('background-video', {
+                height: '100%',
+                width: '100%',
+                videoId: 'S2OdzSG7Hj0',
+                playerVars: {
+                    autoplay: 1,
+                    controls: 0,
+                    showinfo: 0,
+                    modestbranding: 1,
+                    loop: 1,
+                    playlist: 'S2OdzSG7Hj0',
+                    mute: 1 // Muted autoplay
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Trigger play in response to a user gesture
+            document.getElementById('background-video').addEventListener('click', function () {
+                player.playVideo();
+            });
+        }
+
+        function openLink(link) {
+            window.open(link, '_blank');
+        }
+    </script>
+
+</body>
+</html>
